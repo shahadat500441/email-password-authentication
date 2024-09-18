@@ -3,6 +3,7 @@ import auth from "../../Firebase/firebase";
 import { useState } from "react";
 import { FaRegEye } from "react-icons/fa6";
 import { FaRegEyeSlash } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -93,6 +94,7 @@ const Register = () => {
         />
         {success && <p className="text-green-600">{success}</p>}
         {registerError && <p className="text-red-600">{registerError}</p>}
+        <p>Already have an account . Please <Link className="text-gray-500 fond-bold" to="/login" >Login</Link></p>
       </form>
     </div>
   );
