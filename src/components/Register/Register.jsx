@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
 import auth from "../../Firebase/firebase";
 import { useState } from "react";
 import { FaRegEye } from "react-icons/fa6";
@@ -40,6 +40,10 @@ const Register = () => {
       .then((result) => {
         console.log(result.user);
         setSuccess("User created successfully");
+       sendEmailVerification(result.email)
+       .then( ()=>{
+        alert('Please check your email and verify your account')
+       })
       })
       .catch((error) => {
         console.log(error);
@@ -94,7 +98,7 @@ const Register = () => {
         />
         {success && <p className="text-green-600">{success}</p>}
         {registerError && <p className="text-red-600">{registerError}</p>}
-        <p>Already have an account . Please <Link className="text-gray-500 fond-bold" to="/login" >Login</Link></p>
+        <p>Already have an account . Please <Link className="text-gray-500 font-bold" to="/login" >Login</Link></p>
       </form>
     </div>
   );
